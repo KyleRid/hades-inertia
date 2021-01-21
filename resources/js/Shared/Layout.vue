@@ -13,14 +13,18 @@
                 </div>
             </div>
         </nav>
-
+        <sidebar />
         <article>
             <slot />
         </article>
     </main>
 </template>
 <script>
+import Sidebar from '@/Shared/Sidebar';
 export default {
-    inject: ['page']
+    components: {
+        Sidebar,
+    },
+    // inject: ['page']
 }
 </script>
