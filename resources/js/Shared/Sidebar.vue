@@ -11,11 +11,11 @@
                 <li class="nav-item" v-bind:class="{'active': this.currentRoute === 'roles.index'}">
                     <inertia-link :href="route('roles.index')">Posts</inertia-link>
                 </li>
-                <li class="nav-item">
-                    <inertia-link :href="route('dashboard')">Roles</inertia-link>
+                <li class="nav-item" v-bind:class="{'active': this.currentRoute === 'roles.index'}">
+                    <inertia-link :href="route('roles.index')">Roles</inertia-link>
                 </li>
                 <li class="nav-item">
-                    <inertia-link :href="route('dashboard')">Configuration</inertia-link>
+                    <inertia-link :href="route('configuration.index')">Configuration</inertia-link>
                 </li>
                 <li class="nav-item">
                     <inertia-link :href="route('dashboard')">Email Campaign</inertia-link>
