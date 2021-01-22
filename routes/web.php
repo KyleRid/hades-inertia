@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\RolesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,11 +52,15 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/users/create', [UsersCont
 Route::middleware(['auth:sanctum', 'verified'])->post('/users', [UsersController::class, 'store'])->name('users.store');
 Route::middleware(['auth:sanctum', 'verified'])->get('/users/{user}/edit', [UsersController::class, 'edit'])->name('users.edit');
 Route::middleware(['auth:sanctum', 'verified'])->patch('/users/{user}', [UsersController::class, 'update'])->name('users.update');
-Route::delete('/users/{user}', [UsersController::class, 'destroy'])->name('users.destroy');
+Route::middleware(['auth:sanctum', 'verified'])->delete('/users/{user}', [UsersController::class, 'destroy'])->name('users.destroy');
 
-
-
-
+//Roles
+Route::middleware(['auth:sanctum', 'verified'])->get('/roles', [RolesController::class, 'index'])->name('roles.index');
+Route::middleware(['auth:sanctum', 'verified'])->get('/roles/create', [RolesController::class, 'create'])->name('roles.create');
+Route::middleware(['auth:sanctum', 'verified'])->post('/roles', [RolesController::class, 'store'])->name('roles.store');
+Route::middleware(['auth:sanctum', 'verified'])->get('/roles/{user}/edit', [RolesController::class, 'edit'])->name('roles.edit');
+Route::middleware(['auth:sanctum', 'verified'])->patch('/roles/{user}', [RolesController::class, 'update'])->name('roles.update');
+Route::middleware(['auth:sanctum', 'verified'])->delete('/roles/{user}', [RolesController::class, 'destroy'])->name('roles.destroy');
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
