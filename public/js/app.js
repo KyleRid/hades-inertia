@@ -5748,6 +5748,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['users', 'successMessage'],
@@ -5763,7 +5771,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _this.$inertia["delete"]('/users', id).then(function () {
+                _this.$inertia["delete"]("/users/".concat(id), {}).then(function () {
                   console.log('deleted');
                 });
 

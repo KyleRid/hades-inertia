@@ -21,7 +21,15 @@
                         <td>{{user.email}}</td>
                         <td>
                             <inertia-link class="btn btn-edit" :href="`/users/${user.id}/edit`">Edit</inertia-link>
-                            <a href="#" class="btn btn-delete" @click="deleteUser(user.id);">Delete</a>
+                            <!-- <form @submit.prevent="submit">
+                                <input type="hidden" >
+                                <button type="submit" onclick="return confirm('Are you sure?');"
+                                        class="btn btn-primary btn-xs" >
+                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                </button> -->
+                                <!-- {{ csrf_field() }} -->
+                                <a href="#" class="btn btn-delete" @click="deleteUser(user.id);">Delete</a>
+                            <!-- </form> -->
                         </td>
                     </tr>
                 </tbody>
@@ -56,7 +64,7 @@
         },
         methods: {
             async deleteUser(id) {
-                 this.$inertia.delete('/users', id)
+                 this.$inertia.delete(`/users/${id}`, {})
                     .then(() => {
                         console.log('deleted');
                     });
