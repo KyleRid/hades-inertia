@@ -5865,6 +5865,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['users', 'successMessage'],
@@ -74289,6 +74291,15 @@ var render = function() {
               _c(
                 "td",
                 [
+                  _c(
+                    "inertia-link",
+                    {
+                      staticClass: "btn btn-edit",
+                      attrs: { href: "/users/info/" + user.id }
+                    },
+                    [_vm._v("Info")]
+                  ),
+                  _vm._v(" "),
                   _c(
                     "inertia-link",
                     {

@@ -20,6 +20,7 @@
                         <td>{{user.name}}</td>
                         <td>{{user.email}}</td>
                         <td>
+                            <inertia-link class="btn btn-edit" :href="`/users/info/${user.id}`">Info</inertia-link>
                             <inertia-link class="btn btn-edit" :href="`/users/${user.id}/edit`">Edit</inertia-link>
                             <!-- <form @submit.prevent="submit">
                                 <input type="hidden" >
@@ -29,6 +30,7 @@
                                 </button> -->
                                 <!-- {{ csrf_field() }} -->
                                 <a href="#" class="btn btn-delete" @click="deleteUser(user.id);">Delete</a>
+
                             <!-- </form> -->
                         </td>
                     </tr>
