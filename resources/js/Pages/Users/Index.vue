@@ -12,7 +12,7 @@
                     <tr>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
-                        <th scope="col">Address</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -20,8 +20,8 @@
                         <td>{{user.name}}</td>
                         <td>{{user.email}}</td>
                         <td>
-                            <inertia-link :href="`/users/${user.id}/edit`">Edit</inertia-link>
-                            <a href="#">Delete</a>
+                            <inertia-link class="btn btn-edit" :href="`/users/${user.id}/edit`">Edit</inertia-link>
+                            <a href="#" class="btn btn-delete" @click="deleteUser(user.id);">Delete</a>
                         </td>
                     </tr>
                 </tbody>
@@ -30,12 +30,37 @@
     </layout>
 </template>
 
+<style lang="scss">
+    .btn {
+        padding: 5px 10px;
+        border-radius: 10px;
+        color: #fff;
+    }
+
+    .btn-edit {
+        background-color: #0d6efdad;
+
+    }
+
+    .btn-delete {
+        background-color: #fd0d3ead;
+    }
+</style>
+
 <script>
     import Layout from '@/Shared/Layout';
     export default {
         props: ['users', 'successMessage'],
         components: {
-            Layout,
+            Layout
+        },
+        methods: {
+            async deleteUser(id) {
+                 this.$inertia.delete('/users', id)
+                    .then(() => {
+                        console.log('deleted');
+                    });
+            }
         }
     }
 </script>
