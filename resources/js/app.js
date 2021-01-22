@@ -8,7 +8,7 @@ import PortalVue from 'portal-vue';
 Vue.mixin({ methods: { route } });
 Vue.use(InertiaPlugin);
 Vue.use(PortalVue);
-
+Vue.prototype.$route = route;
 const app = document.getElementById('app');
 
 new Vue({
