@@ -4534,8 +4534,34 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 data: _context.t22
               };
               chartMoneySpent = new _context.t16(_context.t17, _context.t23);
+              _context.next = 45;
+              return _this.getTotalPlayers();
 
-            case 43:
+            case 45:
+              _this.totalPlayers = _context.sent;
+              _context.next = 48;
+              return _this.getDeposits();
+
+            case 48:
+              _this.deposits = _context.sent;
+              _context.next = 51;
+              return _this.getRegistrations();
+
+            case 51:
+              _this.registrations = _context.sent;
+              _context.next = 54;
+              return _this.getNetRevenue();
+
+            case 54:
+              _this.netRevenue = _context.sent;
+              _context.next = 57;
+              return _this.getPlayersOnline();
+
+            case 57:
+              _this.playersOnline = _context.sent;
+              _this.loading = false;
+
+            case 59:
             case "end":
               return _context.stop();
           }
@@ -4547,14 +4573,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     return {
       chartPayments: [],
       chartRegistration: [],
-      chartMoneySpent: [] //    ohlcv: [
-      //             [ 1551128400000, 33,  37.1, 14,  14,  196 ],
-      //             [ 1551132000000, 13.7, 30, 6.6,  30,  206 ],
-      //             [ 1551135600000, 29.9, 33, 21.3, 21.8, 74 ],
-      //             [ 1551139200000, 21.7, 25.9, 18, 24,  140 ],
-      //             [ 1551142800000, 24.1, 24.1, 24, 24.1, 29 ],
-      //         ]
-
+      chartMoneySpent: [],
+      totalPlayers: 0,
+      deposits: 0,
+      registrations: 0,
+      netRevenue: 0,
+      playersOnline: 0,
+      loading: true
     };
   },
   methods: {
@@ -4604,6 +4629,86 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee4);
+      }))();
+    },
+    getTotalPlayers: function getTotalPlayers() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                return _context5.abrupt("return", 12321);
+
+              case 1:
+              case "end":
+                return _context5.stop();
+            }
+          }
+        }, _callee5);
+      }))();
+    },
+    getDeposits: function getDeposits() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+          while (1) {
+            switch (_context6.prev = _context6.next) {
+              case 0:
+                return _context6.abrupt("return", 321321321321);
+
+              case 1:
+              case "end":
+                return _context6.stop();
+            }
+          }
+        }, _callee6);
+      }))();
+    },
+    getRegistrations: function getRegistrations() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                return _context7.abrupt("return", 23123);
+
+              case 1:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7);
+      }))();
+    },
+    getNetRevenue: function getNetRevenue() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee8$(_context8) {
+          while (1) {
+            switch (_context8.prev = _context8.next) {
+              case 0:
+                return _context8.abrupt("return", 2321321321);
+
+              case 1:
+              case "end":
+                return _context8.stop();
+            }
+          }
+        }, _callee8);
+      }))();
+    },
+    getPlayersOnline: function getPlayersOnline() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee9() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee9$(_context9) {
+          while (1) {
+            switch (_context9.prev = _context9.next) {
+              case 0:
+                return _context9.abrupt("return", 321321321);
+
+              case 1:
+              case "end":
+                return _context9.stop();
+            }
+          }
+        }, _callee9);
       }))();
     }
   }
@@ -71956,7 +72061,9 @@ var render = function() {
                       _vm._v("Total Players:")
                     ]),
                     _vm._v(" "),
-                    _c("span", { staticClass: "block-number" }, [_vm._v("45")])
+                    _c("span", { staticClass: "block-number" }, [
+                      _vm._v(_vm._s(this.totalPlayers))
+                    ])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "block" }, [
@@ -71965,7 +72072,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("span", { staticClass: "block-number" }, [
-                      _vm._v("156516")
+                      _vm._v(_vm._s(this.deposits))
                     ])
                   ]),
                   _vm._v(" "),
@@ -71975,7 +72082,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("span", { staticClass: "block-number" }, [
-                      _vm._v("2312")
+                      _vm._v(_vm._s(this.registrations))
                     ])
                   ]),
                   _vm._v(" "),
@@ -71985,17 +72092,17 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("span", { staticClass: "block-number" }, [
-                      _vm._v("3213")
+                      _vm._v(_vm._s(this.netRevenue))
                     ])
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "block" }, [
                     _c("span", { staticClass: "block-title" }, [
-                      _vm._v("Playours online")
+                      _vm._v("Playeurs online")
                     ]),
                     _vm._v(" "),
                     _c("span", { staticClass: "block-number" }, [
-                      _vm._v("3213")
+                      _vm._v(_vm._s(this.playersOnline))
                     ])
                   ])
                 ])

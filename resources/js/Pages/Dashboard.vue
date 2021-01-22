@@ -14,23 +14,23 @@
                             <div class="general-statistics__body">
                                 <div class="block">
                                     <span class="block-title">Total Players:</span>
-                                    <span class="block-number">45</span>
+                                    <span class="block-number">{{this.totalPlayers}}</span>
                                 </div>
                                 <div class="block">
                                     <span class="block-title">Deposits Today</span>
-                                    <span class="block-number">156516</span>
+                                    <span class="block-number">{{this.deposits}}</span>
                                 </div>
                                 <div class="block">
                                     <span class="block-title">Registrations</span>
-                                    <span class="block-number">2312</span>
+                                    <span class="block-number">{{this.registrations}}</span>
                                 </div>
                                 <div class="block">
                                     <span class="block-title">Net Revenue</span>
-                                    <span class="block-number">3213</span>
+                                    <span class="block-number">{{this.netRevenue}}</span>
                                 </div>
                                 <div class="block">
-                                    <span class="block-title">Playours online</span>
-                                    <span class="block-number">3213</span>
+                                    <span class="block-title">Playeurs online</span>
+                                    <span class="block-number">{{this.playersOnline}}</span>
                                 </div>
                             </div>
                         </div>
@@ -165,6 +165,13 @@
                         ]
                     }
                 });
+
+                this.totalPlayers = await this.getTotalPlayers();
+                this.deposits = await this.getDeposits();
+                this.registrations = await this.getRegistrations();
+                this.netRevenue = await this.getNetRevenue();
+                this.playersOnline = await this.getPlayersOnline();
+                this.loading = false;
             })();
 
         },
@@ -174,25 +181,46 @@
                 chartPayments: [],
                 chartRegistration: [],
                 chartMoneySpent: [],
-            //    ohlcv: [
-            //             [ 1551128400000, 33,  37.1, 14,  14,  196 ],
-            //             [ 1551132000000, 13.7, 30, 6.6,  30,  206 ],
-            //             [ 1551135600000, 29.9, 33, 21.3, 21.8, 74 ],
-            //             [ 1551139200000, 21.7, 25.9, 18, 24,  140 ],
-            //             [ 1551142800000, 24.1, 24.1, 24, 24.1, 29 ],
-            //         ]
+                totalPlayers: 0,
+                deposits: 0,
+                registrations: 0,
+                netRevenue: 0,
+                playersOnline: 0,
+                loading: true,
             };
         },
         methods: {
-            async getChartPayments() {
-                return [300, 700, 450, 750, 450];
-            },
-            async getChartRegistration() {
-                return [300, 700, 450, 750, 450];
-            },
+                async getChartPayments() {
+                    return [300, 700, 450, 750, 450];
+                },
+
+                async getChartRegistration() {
+                    return [300, 700, 450, 750, 450];
+                },
+
                 async getchartMoneySpent() {
-                return [300, 700, 450, 750, 450];
-            }
+                    return [300, 700, 450, 750, 450];
+                },
+
+                async getTotalPlayers() {
+                    return 12321;
+                },
+
+                async getDeposits() {
+                    return 321321321321;
+                },
+
+                async getRegistrations() {
+                    return 23123;
+                },
+
+                async getNetRevenue() {
+                    return 2321321321;
+                },
+
+                async getPlayersOnline() {
+                    return 321321321;
+                }
             }
     }
 </script>
