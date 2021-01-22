@@ -73,7 +73,10 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::where('id', $id)->get();
+        return Inertia::render('Users/Edit', [
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -85,7 +88,16 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        // $request->validate([
+        //     'name' => 'required',
+        //     'email' => 'required|email|unique:users',
+        // ]);
+        User::whereId($id)->update([
+            'name' => $request->name,
+            'email' => $request->email,
+        ]);
+
     }
 
     /**
