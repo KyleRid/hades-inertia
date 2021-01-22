@@ -5,7 +5,7 @@
                 <div v-if="Object.keys(errors).length > 0" class="alert alert-danger mt-4">
                     {{errors[Object.keys(errors)[0][0]]}}
                 </div>
-                <form action="/users" method="POST" class="my-5" @submit.prevent="updateUser()">
+                <form class="my-5" @submit.prevent="updateUser()">
                     <div class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" id="name" placeholder="Name" v-model="form.name">

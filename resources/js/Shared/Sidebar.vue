@@ -2,23 +2,23 @@
     <nav class="col-md-2 d-none d-md-block bg-light sidebar" style="min-height: 100vh;">
         <div class="sidebar-sticky">
             <ul class="nav flex-column">
-                <li class="nav-item">
-                    <inertia-link href="/dashboard">Dashboard</inertia-link>
+                <li class="nav-item" v-bind:class="{'active': this.currentRoute === 'dashboard'}">
+                    <inertia-link :href="route('dashboard')">Dashboard</inertia-link>
+                </li>
+                <li class="nav-item" v-bind:class="{'active': this.currentRoute === 'users.index'}">
+                    <inertia-link :href="route('users.index')">Users</inertia-link>
+                </li>
+                <li class="nav-item" v-bind:class="{'active': this.currentRoute === 'roles.index'}">
+                    <inertia-link :href="route('roles.index')">Posts</inertia-link>
                 </li>
                 <li class="nav-item">
-                    <inertia-link href="/users">Users</inertia-link>
+                    <inertia-link :href="route('dashboard')">Roles</inertia-link>
                 </li>
                 <li class="nav-item">
-                    <inertia-link href="/posts">Posts</inertia-link>
+                    <inertia-link :href="route('dashboard')">Configuration</inertia-link>
                 </li>
                 <li class="nav-item">
-                    <inertia-link href="/roles">Roles</inertia-link>
-                </li>
-                <li class="nav-item">
-                    <inertia-link href="/configuration">Configuration</inertia-link>
-                </li>
-                <li class="nav-item">
-                    <inertia-link href="/email">Email Campaign</inertia-link>
+                    <inertia-link :href="route('dashboard')">Email Campaign</inertia-link>
                 </li>
             </ul>
         </div>
@@ -38,11 +38,23 @@
                  background: #eaeaea;
              }
         }
+
+        &.active {
+            background-color: #35ca5959;
+        }
     }
 </style>
 
 <script>
     export default {
-
+        data() {
+            return {
+                currentRoute: 'dashboard',
+            }
+        },
+        mounted() {
+            this.currentRoute = route().current();
+            console.log('current route', route().current());
+        }
     }
 </script>
