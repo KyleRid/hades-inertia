@@ -119,7 +119,7 @@
             (async () => {
                 this.chartPayments = await this.getChartPayments();
                 this.chartRegistration = await this.getChartRegistration();
-                this.chartMoneySpent = await this.getchartMoneySpent();
+                this.chartMoneySpent = await this.getChartMoneySpent();
                 const chartPayments = new Chart(document.getElementById('chart-payments') , {
                     type: 'line',
                     responsive: true,
@@ -159,7 +159,7 @@
                         datasets: [
                         {
                             label: '2018 Sales',
-                            data: await this.getchartMoneySpent(),
+                            data: await this.getChartMoneySpent(),
                             backgroundColor: '#00ff6645',
                         }
                         ]

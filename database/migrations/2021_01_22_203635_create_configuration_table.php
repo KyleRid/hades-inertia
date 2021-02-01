@@ -22,66 +22,62 @@ class CreateConfigurationTable extends Migration
 
         DB::table('configurations')->insert(
             [
+                // [
+                //     'option_name' => 'siteurl',
+                //     'option_value' => 'http://localhost/wordpress/',
+                // ],
+                // [
+                //     'option_name' => 'home',
+                //     'option_value' => 'http://localhost/wordpress/',
+                // ],
                 [
-                    'option_name' => 'siteurl',
-                    'option_value' => 'http://localhost/wordpress/',
-                ],
-                [
-                    'option_name' => 'home',
-                    'option_value' => 'http://localhost/wordpress/',
-                ],
-                [
-                    'option_name' => 'sitename',
+                    'option_name' => 'siteName',
                     'option_value' => 'Hades Demo Site',
                 ],
                 [
-                    'option_name' => 'sitedescription',
+                    'option_name' => 'siteDescription',
                     'option_value' => 'Hades Description',
                 ],
                 [
-                    'option_name' => 'user_can_register',
-                    'option_value' => '0',
+                    'option_name' => 'siteTitle',
+                    'option_value' => 'Hades Description',
                 ],
                 [
-                    'option_name' => 'admin_email',
-                    'option_value' => 'nelsonbh@yandex.ru',
-                ],
-                [
-                    'option_name' => 'mailserver_url',
-                    'option_value' => 'mail.example.com',
-                ],
-                [
-                    'option_name' => 'mailserver_login',
-                    'option_value' => 'login@example.com',
-                ],
-                [
-                    'option_name' => 'mailserver_pass',
-                    'option_value' => 'password',
-                ],
-                [
-                    'option_name' => 'mailserver_port',
-                    'option_value' => '110',
-                ],
-                [
-                    'option_name' => 'default_category',
+                    'option_name' => 'allowRegistration',
                     'option_value' => '1',
                 ],
                 [
-                    'option_name' => 'default_comment_status',
-                    'option_value' => 'open',
+                    'option_name' => 'allowLogin',
+                    'option_value' => '1',
                 ],
                 [
-                    'option_name' => 'date_format',
-                    'option_value' => 'F j, Y',
+                    'option_name' => 'maintenanceMode',
+                    'option_value' => '0',
                 ],
                 [
-                    'option_name' => 'time_format',
-                    'option_value' => 'g:i a',
+                    'option_name' => 'adminEmail',
+                    'option_value' => 'nelsonbh@yandex.ru',
                 ],
-                [
-                    'option_name' => 'links_updated_date_format',
-                    'option_value' => 'F j, Y g:i a',
-                ],
+                // [
+                //     'option_name' => 'default_category',
+                //     'option_value' => '1',
+                // ],
+                // [
+                //     'option_name' => 'default_comment_status',
+                //     'option_value' => 'open',
+                // ],
+                // [
+                //     'option_name' => 'date_format',
+                //     'option_value' => 'F j, Y',
+                // ],
+                // [
+                //     'option_name' => 'time_format',
+                //     'option_value' => 'g:i a',
+                // ],
+                // [
+                //     'option_name' => 'links_updated_date_format',
+                //     'option_value' => 'F j, Y g:i a',
+                // ],
             ]
         );
     }

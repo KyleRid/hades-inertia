@@ -8,7 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Configuration extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'option_id';
+    protected $primaryKey = 'config_id';
     public $timestamps = false;
-    protected $fillable = ['option_name'];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'siteName',
+        'siteDescription',
+        'titleTag',
+        'allowLogin',
+        'allowRegistration',
+        'maintenanceMode',
+        'adminEmail'
+    ];
 }

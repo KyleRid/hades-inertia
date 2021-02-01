@@ -72,9 +72,28 @@ class ConfigurationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+
+        var_dump($request);
+        // $request->validate([
+        //     'siteName' => 'required',
+        //     'siteDescription' => 'required',
+        //     'adminEmail' => 'required|email',
+        //     'titleTag' => 'required',
+        //     'allowLogin' => 'required|boolean',
+        //     'allowRegistration' => 'required|boolean',
+        //     'maintenanceMode' => 'required|boolean'
+        // ]);
+        // Configuration::whereId(1)->update([
+        //     'siteName' => $request->name,
+        //     'siteDescription' => $request->email,
+        //     'titleTag' => $request->titleTag,
+        //     'allowLogin' => $request->allowLogin,
+        //     'allowRegistration' => $request->allowRegistration,
+        //     'maintenanceMode' => $request->maintenanceMode,
+        //     'adminEmail' => $request->adminEmail,
+        // ]);
     }
 
     /**

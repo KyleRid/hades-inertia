@@ -7,32 +7,37 @@
             <form @submit.prevent="save()"  v-if="!isLoading">
                 <div class="form-group">
                     <label for="sitename">Site name</label>
-                    <input id="sitename" type="text" placeholder="Site Name">
+                    <input id="sitename" type="text" placeholder="Site Name" v-model="form.siteName">
                 </div>
 
                 <div class="form-group">
                     <label for="sitedescription">Site description</label>
-                    <input id="sitedescription" type="text" placeholder="Site Description">
+                    <input id="sitedescription" type="text" placeholder="Site Description" v-model="form.siteDescription">
                 </div>
 
                  <div class="form-group">
-                    <label for="sitename">Title Tag</label>
-                    <input id="sitename" type="text" placeholder="Site Name">
+                    <label for="titleTag">Title Tag</label>
+                    <input id="titleTag" type="text" placeholder="Site Title" v-model="form.siteTitle">
+                </div>
+
+                <div class="form-group">
+                    <label for="adminEmail">Admin Email</label>
+                    <input id="adminEmail" type="text" placeholder="Admin Email" v-model="form.adminEmail">
                 </div>
 
                 <div class="form-group">
                     <label for="allowlogin">Allow Login</label>
-                    <input id="allowlogin" type="checkbox" v-model="allowLogin">
+                    <input id="allowlogin" type="checkbox" v-model="form.allowLogin">
                 </div>
 
                 <div class="form-group">
                     <label for="allowregistration">Allow Registration</label>
-                    <input id="allowregistration" type="checkbox" v-model="allowRegistration">
+                    <input id="allowregistration" type="checkbox" v-model="form.allowRegistration">
                 </div>
 
                 <div class="form-group">
                     <label for="maintenance">Maintenance Mode</label>
-                    <input id="maintenance" type="checkbox" v-model="maintenanceMode">
+                    <input id="maintenance" type="checkbox" v-model="form.maintenanceMode">
                 </div>
                 <button class="btn btn-success" type="submit">Save</button>
             </form>
@@ -66,34 +71,35 @@
         },
         data() {
             return {
-                siteData: null,
-                isLoading: true,
-                siteName: 'Hades',
-                siteDescription: 'Test Description',
-                titleTag: 'Title Tag',
-                allowLogin: true,
-                allowRegistration: true,
-                maintenanceMode: false,
-            };
-        },
-        async mounted() {
-            this.siteData = await this.getSiteInfo();
-            console.log(this.siteData);
-            this.isLoading = false;
-        },
-        methods: {
-            async getSiteInfo() {
-                return {
+                form: {
                     siteName: 'Hades',
                     siteDescription: 'Test Description',
-                    titleTag: 'Title Tag',
+                    siteTitle: 'Site Title',
                     allowLogin: true,
                     allowRegistration: true,
                     maintenanceMode: false,
+                },
+                isLoading: true,
+            };
+        },
+        async mounted() {
+            this.configuration.forEach((item) => {
+                this.form[item.option_name] = {
+                    id: item.option_id,
+                    value: item.option_value,
+                    name: item.option_name,
                 }
-            },
+            });
+            console.log('form', this.form);
+            console.log(this.siteData);
+            this.isLoading = false;
+            console.log('configuration', this.configuration);
+        },
+        methods: {
             async save() {
-                 console.log('saved');
+                this.$inertia.patch('/configuration', this.form).then(() => {
+                    console.log('saved');
+                });
             }
         }
     }
