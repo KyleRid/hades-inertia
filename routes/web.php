@@ -47,14 +47,35 @@ use App\Http\Controllers\ConfigurationController;
 Route::middleware(['auth:sanctum', 'verified'])->get('/', function() {
     return redirect('/dashboard');
 });
+
 // Users
-Route::middleware(['auth:sanctum', 'verified'])->get('/users', [UsersController::class, 'index'])->name('users.index');
-Route::middleware(['auth:sanctum', 'verified'])->get('/users/create', [UsersController::class, 'create'])->name('users.create');
-Route::middleware(['auth:sanctum', 'verified'])->post('/users', [UsersController::class, 'store'])->name('users.store');
-Route::middleware(['auth:sanctum', 'verified'])->get('/users/{user}/edit', [UsersController::class, 'edit'])->name('users.edit');
-Route::middleware(['auth:sanctum', 'verified'])->get('/users/{user}', [UsersController::class, 'show'])->name('users.info');
-Route::middleware(['auth:sanctum', 'verified'])->patch('/users/{user}', [UsersController::class, 'update'])->name('users.update');
-Route::middleware(['auth:sanctum', 'verified'])->delete('/users/{user}', [UsersController::class, 'destroy'])->name('users.destroy');
+Route::middleware(['auth:sanctum', 'verified'])
+    ->get('/users', [UsersController::class, 'index'])
+    ->name('users.index');
+
+Route::middleware(['auth:sanctum', 'verified'])
+    ->get('/users/create', [UsersController::class, 'create'])
+    ->name('users.create');
+
+Route::middleware(['auth:sanctum', 'verified'])
+    ->post('/users', [UsersController::class, 'store'])
+    ->name('users.store');
+
+Route::middleware(['auth:sanctum', 'verified'])
+    ->get('/users/{user}/edit', [UsersController::class, 'edit'])
+    ->name('users.edit');
+
+Route::middleware(['auth:sanctum', 'verified'])
+    ->get('/users/{user}', [UsersController::class, 'show'])
+    ->name('users.info');
+
+Route::middleware(['auth:sanctum', 'verified'])
+    ->patch('/users/{user}', [UsersController::class, 'update'])
+    ->name('users.update');
+
+Route::middleware(['auth:sanctum', 'verified'])
+    ->delete('/users/{user}', [UsersController::class, 'destroy'])
+    ->name('users.destroy');
 
 //Roles
 Route::middleware(['auth:sanctum', 'verified'])->get('/roles', [RolesController::class, 'index'])->name('roles.index');

@@ -41,15 +41,11 @@
             }
         },
         mounted() {
-            const user = this.getUser();
             console.log(this.user);
             this.form.name = this.user[0].name;
             this.form.email = this.user[0].email;
         },
         methods: {
-            async getUser() {
-
-            },
             updateUser() {
                 this.$inertia.patch(`/users/${this.user[0].id}`, this.form)
                     .then((not) => {

@@ -1,36 +1,41 @@
 <template>
     <layout>
         <div class="container">
-            <!-- <div v-if="successMessage" class="alert alert-success mt-4">
-                {{successMessage}}
-            </div> -->
-            <div class="my-5">
-                <a href="/users/create" class="btn btn-primary">Create User</a>
+            <div v-if="isLoading">
+                Loading...
             </div>
-            <table class="table table-stripped">
-                <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- <tr v-for="user in users" :key="user.id">
-                        <td>{{user.name}}</td>
-                        <td>{{user.email}}</td>
-                        <td>
-                            <inertia-link class="btn btn-edit" :href="$route('users.info', user.id)">Info</inertia-link>
+            <form @submit.prevent="save()"  v-if="!isLoading">
+                <div class="form-group">
+                    <label for="sitename">Site name</label>
+                    <input id="sitename" type="text" placeholder="Site Name">
+                </div>
 
-                            <inertia-link class="btn btn-edit" :href="$route('users.edit', user.id)">Edit</inertia-link>
+                <div class="form-group">
+                    <label for="sitedescription">Site description</label>
+                    <input id="sitedescription" type="text" placeholder="Site Description">
+                </div>
 
-                                <a href="#" class="btn btn-delete" @click="deleteUser(user.id);">Delete</a>
+                 <div class="form-group">
+                    <label for="sitename">Title Tag</label>
+                    <input id="sitename" type="text" placeholder="Site Name">
+                </div>
 
+                <div class="form-group">
+                    <label for="allowlogin">Allow Login</label>
+                    <input id="allowlogin" type="checkbox" v-model="allowLogin">
+                </div>
 
-                        </td>
-                    </tr> -->
-                </tbody>
-            </table>
+                <div class="form-group">
+                    <label for="allowregistration">Allow Registration</label>
+                    <input id="allowregistration" type="checkbox" v-model="allowRegistration">
+                </div>
+
+                <div class="form-group">
+                    <label for="maintenance">Maintenance Mode</label>
+                    <input id="maintenance" type="checkbox" v-model="maintenanceMode">
+                </div>
+                <button class="btn btn-success" type="submit">Save</button>
+            </form>
         </div>
     </layout>
 </template>
@@ -59,15 +64,36 @@
         components: {
             Layout
         },
-        mounted() {
-            console.log(this.configuration);
+        data() {
+            return {
+                siteData: null,
+                isLoading: true,
+                siteName: 'Hades',
+                siteDescription: 'Test Description',
+                titleTag: 'Title Tag',
+                allowLogin: true,
+                allowRegistration: true,
+                maintenanceMode: false,
+            };
+        },
+        async mounted() {
+            this.siteData = await this.getSiteInfo();
+            console.log(this.siteData);
+            this.isLoading = false;
         },
         methods: {
-            async deleteUser(id) {
-                 this.$inertia.delete(`/users/${id}`, {})
-                    .then(() => {
-                        console.log('deleted');
-                    });
+            async getSiteInfo() {
+                return {
+                    siteName: 'Hades',
+                    siteDescription: 'Test Description',
+                    titleTag: 'Title Tag',
+                    allowLogin: true,
+                    allowRegistration: true,
+                    maintenanceMode: false,
+                }
+            },
+            async save() {
+                 console.log('saved');
             }
         }
     }

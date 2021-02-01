@@ -21,19 +21,8 @@
                         <td>{{user.email}}</td>
                         <td>
                             <inertia-link class="btn btn-edit" :href="$route('users.info', user.id)">Info</inertia-link>
-                            <!-- <inertia-link class="btn btn-edit" :href="`/users/${user.id}/edit`">Edit</inertia-link> -->
                             <inertia-link class="btn btn-edit" :href="$route('users.edit', user.id)">Edit</inertia-link>
-
-                            <!-- <form @submit.prevent="submit">
-                                <input type="hidden" >
-                                <button type="submit" onclick="return confirm('Are you sure?');"
-                                        class="btn btn-primary btn-xs" >
-                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                                </button> -->
-                                <!-- {{ csrf_field() }} -->
-                                <a href="#" class="btn btn-delete" @click="deleteUser(user.id);">Delete</a>
-
-                            <!-- </form> -->
+                            <inertia-link class="btn btn-delete" @click="deleteUser(user.id)" as="button">Delete</inertia-link>
                         </td>
                     </tr>
                 </tbody>

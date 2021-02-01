@@ -190,35 +190,35 @@
             };
         },
         methods: {
-                async getChartPayments() {
+                async getChartPayments(period) {
                     return [300, 700, 450, 750, 450];
                 },
 
-                async getChartRegistration() {
+                async getChartRegistration(period) {
                     return [300, 700, 450, 750, 450];
                 },
 
-                async getchartMoneySpent() {
+                async getChartMoneySpent(period) {
                     return [300, 700, 450, 750, 450];
                 },
 
-                async getTotalPlayers() {
+                async getTotalPlayers(period) {
                     return 12321;
                 },
 
-                async getDeposits() {
+                async getDeposits(period) {
                     return 321321321321;
                 },
 
-                async getRegistrations() {
+                async getRegistrations(period) {
                     return 23123;
                 },
 
-                async getNetRevenue() {
+                async getNetRevenue(period) {
                     return 2321321321;
                 },
 
-                async getPlayersOnline() {
+                async getPlayersOnline(period) {
                     return 321321321;
                 }
             }
