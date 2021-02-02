@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;
-
+use Illuminate\Support\Facades\DB;
 class HandleInertiaRequests extends Middleware
 {
     /**
@@ -37,7 +37,19 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request)
     {
         return array_merge(parent::share($request), [
-            //
+            'app.name' => $this->getConfiguration()['app.name'],
+            'app.description' => $this->getConfiguration()['app.description'],
         ]);
+    }
+
+    private function getConfiguration() {
+        $config = DB::table('configurations')
+                    ->whereIn('option_name', ['siteName', 'siteDescription'])
+                    ->orderBy('option_id')
+                    ->get();
+        return [
+            'app.name' => $config[0]->option_value ?? config('app.name'),
+            'app.description' => $config[1]->option_value ?? config('app.description'),
+        ];
     }
 }

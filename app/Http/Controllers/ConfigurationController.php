@@ -76,6 +76,7 @@ class ConfigurationController extends Controller
     {
 
         var_dump($request);
+        config('app.name', 'TestName');
         // $request->validate([
         //     'siteName' => 'required',
         //     'siteDescription' => 'required',
