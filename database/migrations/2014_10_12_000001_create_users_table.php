@@ -22,8 +22,9 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->timestamps();
-            $table->foreign('role_id')->references('id')->on('roles');
-            $table->string('currency', 3);
+            $table->integer('role_id')->unsigned();
+            $table->foreign('role_id')->references('id')->on('roles')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('currency', 3); // !!! CURRENCY TABLE
             $table->string('login', 150)->nullable();
             $table->boolean('gender')->default(true);
             $table->boolean('verified')->default(false);

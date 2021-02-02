@@ -1,8 +1,8 @@
 <template>
     <layout>
         <div class="container">
-            <div v-if="successMessage" class="alert alert-success mt-4">
-                {{successMessage}}
+            <div v-if="successMessages" class="alert alert-success mt-4" id="successMessages">
+                {{this.successMessages}}
             </div>
             <div class="my-5">
                 <a href="/users/create" class="btn btn-primary">Create User</a>
@@ -51,9 +51,17 @@
 <script>
     import Layout from '@/Shared/Layout';
     export default {
-        props: ['users', 'successMessage'],
+        props: ['users', 'successMessages'],
         components: {
             Layout
+        },
+        mounted() {
+            if (this.successMessages) {
+                const timeout = setTimeout(() => {
+                    document.getElementById('successMessages').remove();
+                    clearTimeout(timeout);
+                }, 5000);
+            }
         },
         methods: {
             async deleteUser(id) {

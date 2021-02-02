@@ -111,7 +111,7 @@ class UsersController extends Controller
         $user = User::whereId($id)->get()[0];
         $updatedFields = array(
             'name' => $request->name,
-            'role' => $request->role,
+            'role_id' => $request->role_id,
             'currency' => $request->currency,
             'login' => $request->login,
             'verified' => $request->verified,
@@ -121,7 +121,7 @@ class UsersController extends Controller
         );
         $validateFields = array(
             'name' => 'required|alpha',
-            'role' => Rule::in(['client', 'admin', 'accountant']),
+            'role_id' => 'required|numeric',
             'currency' => [
                 'required',
                 Rule::in(['EUR', 'RUB', 'USD'])
@@ -146,6 +146,7 @@ class UsersController extends Controller
         $request->validate($validateFields);
 
         User::whereId($id)->update($updatedFields);
+        return redirect()->route('users.index')->with('successMessage', 'User has been successfully updated');
 
     }
 

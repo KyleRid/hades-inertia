@@ -5,13 +5,13 @@
                 <div v-if="Object.keys(errors).length > 0" class="alert alert-danger mt-4">
                     {{errors[Object.keys(errors)[0][0]]}}
                 </div>
-                  <form action="/users" method="POST" class="my-5" @submit.prevent="updateUser()">
+                  <form class="my-5" @submit.prevent="updateUser()">
                     <div class="form-group">
                         <label for="name">Role</label>
-                        <select name="roles" id="roles">
-                            <option name="role" value="client">Client</option>
-                            <option name="role" value="admin">Admin</option>
-                            <option name="role" value="accountant">Accountant</option>
+                        <select name="roles" id="roles" v-model="form.role_id">
+                            <option name="role" value="1">Client</option>
+                            <option name="role" value="2">Admin</option>
+                            <option name="role" value="3">Accountant</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -44,9 +44,9 @@
                     </div>
                     <div class="form-group">
                         <label for="gender-m">Male</label>
-                        <input type="radio" name="gender" class="form-control" id="gender-m" value="true" v-model="form.gender">
+                        <input type="radio" name="gender" class="form-control" id="gender-m" value="1" v-model="form.gender">
                         <label for="gender-f">Female</label>
-                        <input type="radio" name="gender" class="form-control" id="gender-f" value="false" v-model="form.gender">
+                        <input type="radio" name="gender" class="form-control" id="gender-f" value="0" v-model="form.gender">
                     </div>
                      <div class="form-group">
                         <label for="name">Birthdate (optional)</label>
@@ -86,7 +86,7 @@
         data() {
             return {
                form: {
-                    role: 'client',
+                    role_id: 1,
                     currency: 'EUR',
                     name: '',
                     email: '',
@@ -104,8 +104,8 @@
         },
         mounted() {
             console.log(this.user);
-            this.form.role = this.user[0].role;
-            this.form.currency = this.user[0].currency || 'EUR';
+            this.form.role_id = this.user[0].role_id || 1;
+            this.form.currency = 'EUR';
             this.form.name = this.user[0].name;
             this.form.email = this.user[0].email;
             this.form.login = this.user[0].login;
@@ -116,6 +116,7 @@
             this.form.bankName = this.user[0].bankName;
             this.form.passport = this.user[0].passport;
             this.form.phone = this.user[0].phone;
+            console.log(this.form);
         },
         methods: {
             updateUser() {
