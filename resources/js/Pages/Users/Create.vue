@@ -17,11 +17,11 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="name">Currency</label>
-                        <select name="roles" id="roles">
-                            <option name="role" value="client">Client</option>
-                            <option name="role" value="admin">Admin</option>
-                            <option name="role" value="accountant">Accountant</option>
+                        <label for="currency">Currency</label>
+                        <select name="currency" id="currency" v-model="currency">
+                            <option name="role" value="EUR">EUR</option>
+                            <option name="role" value="USD">USD</option>
+                            <option name="role" value="RUB">RUB</option>
                         </select>
                     </div>
                     <div class="form-group">
