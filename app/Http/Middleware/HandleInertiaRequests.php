@@ -39,17 +39,19 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             'app.name' => $this->getConfiguration()['app.name'],
             'app.description' => $this->getConfiguration()['app.description'],
+            'app.allowLogin' => $this->getConfiguration()['app.allowLogin'],
         ]);
     }
 
     private function getConfiguration() {
         $config = DB::table('configurations')
-                    ->whereIn('option_name', ['siteName', 'siteDescription'])
+                    ->whereIn('option_name', ['siteName', 'siteDescription', 'allowLogin'])
                     ->orderBy('option_id')
                     ->get();
         return [
             'app.name' => $config[0]->option_value ?? config('app.name'),
             'app.description' => $config[1]->option_value ?? config('app.description'),
+            'app.allowLogin' => $config[2]->option_value ?? true,
         ];
     }
 }
