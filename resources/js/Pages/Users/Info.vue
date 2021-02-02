@@ -2,24 +2,29 @@
     <layout>
         <div class="container">
             <div class="col-md-6">
-                <div v-if="Object.keys(errors).length > 0" class="alert alert-danger mt-4">
-                    {{errors[Object.keys(errors)[0][0]]}}
+                <div v-for="field in this.fields">
+                    {{field.title}}: {{field.value || '-'}}
                 </div>
-                <form action="/users" method="POST" class="my-5" @submit.prevent="updateUser()">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Name" v-model="form.name">
-                    </div>
-                    <div class="form-group">
-                        <label for="name">Email</label>
-                        <input type="text" class="form-control" id="name" placeholder="Email" v-model="form.email">
-                    </div>
-                    <div class="form-group">
-                        <label for="name">Password</label>
-                        <input type="text" class="form-control" id="name" placeholder="Password" v-model="form.password">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Create User</button>
-                </form>
+                <!-- <div>Access: {{  }}</div>
+                <div>Currency: {{  }}</div>
+                <div>LastName: {{  }}</div>
+                <div>Gender: {{  }}</div>
+                <div>Email: {{  }}</div>
+                <div>Birthdate: {{  }}</div>
+                <div>IBAN: {{  }}</div>
+                <div>BankName: {{  }}</div>
+                <div>Passport: {{  }}</div>
+                <div>Login: {{  }}</div>
+                <div>Verified: {{  }}</div>
+                <div>Phone: {{  }}</div>
+                <div>RegistrationDate: {{  }}</div>
+                <div>Creator: {{  }}</div>
+                <div>LastLoginDate: {{  }}</div>
+                <div>LastLoginIP: {{  }}</div>
+                <div>Status: {{  }}</div>
+                <div>City: {{  }}</div>
+                <div>Country: {{  }}</div>
+                <div>Balance: {{  }}</div> -->
             </div>
         </div>
     </layout>
@@ -33,29 +38,65 @@
             Layout,
         },
         data() {
-            return {
-                form: {
-                    name: '',
-                    email: '',
+            let fields = {};
+            let titles = {
+                birthdate: 'Birth Date',
+                created_at: 'Created At',
+                currency: 'Currency',
+                email: 'Email',
+                gender: 'Gender',
+                iban: 'IBAN',
+                id: 'ID',
+                login: 'Login',
+                name: 'Name',
+                role_id: 'Role',
+                updated_at: 'Updated At',
+                verified: 'Verified'
+            }
+            for (let key in this.user[0]) {
+                if (this.user[0].hasOwnProperty(key) && titles.hasOwnProperty([key])) {
+                    fields[key] = {
+                        title: titles[key],
+                        value: this.user[0][key]
+                    }
                 }
+            }
+            console.log('fields', fields);
+            return {
+                fields: fields,
             }
         },
         mounted() {
-            const user = this.getUser();
-            console.log(this.user);
-            this.form.name = this.user[0].name;
-            this.form.email = this.user[0].email;
+            // console.log(this.user);
+            // let titles = {
+            //     birthdate: 'Birth Date',
+            //     created_at: 'Created At',
+            //     currency: 'Currency',
+            //     email: 'Email',
+            //     gender: 'Gender',
+            //     iban: 'IBAN',
+            //     id: 'ID',
+            //     login: 'Login',
+            //     name: 'Name',
+            //     role_id: 'Role',
+            //     updated_at: 'Updated At',
+            //     verified: 'Verified'
+            // }
+            // for (let key in this.user[0]) {
+            //     console.log('key', key, titles, titles.hasOwnProperty[key]);
+            //     if (this.user[0].hasOwnProperty(key) && titles.hasOwnProperty([key])) {
+            //         console.log('true');
+            //         this.fields[key] = {
+            //             title: titles[key],
+            //             value: this.user[0][key]
+            //         }
+            //     }
+            // }
+            // console.log('thisfel', this.fields);
+            // this.form.name = this.user[0].name;
+            // this.form.email = this.user[0].email;
         },
         methods: {
-            async getUser() {
-
-            },
-            updateUser() {
-                this.$inertia.patch(`/users/${this.user[0].id}`, this.form)
-                    .then((not) => {
-                        console.log('updated', not);
-                    });
-            }
         }
     }
 </script>
