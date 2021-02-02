@@ -18,7 +18,7 @@
                     <inertia-link :href="route('configuration.index')">Configuration</inertia-link>
                 </li>
                 <li class="nav-item">
-                    <inertia-link :href="route('dashboard')">Email Campaign</inertia-link>
+                    <inertia-link :href="route('emailCampaign.index')">Email Campaign</inertia-link>
                 </li>
             </ul>
         </div>

@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\ConfigurationController;
+use App\Http\Controllers\EmailCampaignController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -92,6 +93,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/configuration', [Configur
 // Route::middleware(['auth:sanctum', 'verified'])->get('/roles/{user}/edit', [RolesController::class, 'edit'])->name('roles.edit');
 Route::middleware(['auth:sanctum', 'verified'])->patch('/configuration', [ConfigurationController::class, 'update'])->name('configuration.update');
 // Route::middleware(['auth:sanctum', 'verified'])->delete('/roles/{user}', [RolesController::class, 'destroy'])->name('roles.destroy');
+
+
+Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
+    Route::get('/emailCampaign', [EmailCampaignController::class, 'index'])->name('emailCampaign.index');
+
+    Route::patch('/emailCampaign', [EmailCampaignController::class, 'update']);
+});
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
