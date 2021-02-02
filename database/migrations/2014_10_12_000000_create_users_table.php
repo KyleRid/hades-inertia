@@ -21,8 +21,14 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
-            $table->text('profile_photo_path')->nullable();
             $table->timestamps();
+            $table->foreign('role_id')->references('id')->on('roles');
+            $table->string('currency', 3);
+            $table->string('login', 150)->nullable();
+            $table->boolean('gender')->default(true);
+            $table->boolean('verified')->default(false);
+            $table->date('birthdate')->nullable();
+            $table->string('iban')->nullable();
         });
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Inertia\Inertia;
+use Illuminate\Validation\Rule;
 
 class UsersController extends Controller
 {
@@ -40,14 +41,31 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|alpha',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:5',
+            'role' => Rule::in(['client', 'admin', 'accountant']),
+            'currency' => [
+                'required',
+                Rule::in(['EUR', 'RUB', 'USD'])
+            ],
+            'login' => 'alpha_num|unique:users|nullable',
+            'verified' => 'Boolean',
+            'gender' => 'Boolean',
+            'birthdate' => 'Date|nullable',
+            'iban' => 'string|nullable',
         ]);
         User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
+            'role' => $request->role,
+            'currency' => $request->currency,
+            'login' => $request->login,
+            'verified' => $request->verified,
+            'gender' => $request->gender,
+            'birthdate' => $request->birthdate,
+            'iban' => $request->iban,
         ]);
 
         return redirect()->route('users.index')->with('successMessage', 'User was successfully created');
