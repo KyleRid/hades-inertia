@@ -22,6 +22,7 @@
                         </td>
                         <td>
                             <inertia-link class="btn btn-edit" :href="$route('posts.show', post.id)">{{post.title}}</inertia-link>
+                            <inertia-link class="btn btn-edit" :href="$route('posts.edit', post.id)">Edit</inertia-link>
                         </td>
                     </tr>
                 </tbody>
@@ -52,13 +53,13 @@
     export default {
         props: ['posts', 'successMessages'],
         components: {
-            Layout
+            Layout,
         },
         mounted() {
            console.log(this.posts);
         },
         methods: {
 
-        }
+        },
     }
 </script>

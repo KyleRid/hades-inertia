@@ -63,7 +63,10 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::where('id', $id)->get();
+        return Inertia::render('Posts/Edit', [
+            'post' => $post,
+        ]);
     }
 
     /**
@@ -75,7 +78,46 @@ class PostsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        var_dump($request);
+        // $user = Post::whereId($id)->get()[0];
+        // $updatedFields = array(
+        //     'name' => $request->name,
+        //     'role_id' => $request->role_id,
+        //     'currency' => $request->currency,
+        //     'login' => $request->login,
+        //     'verified' => $request->verified,
+        //     'gender' => $request->gender,
+        //     'birthdate' => $request->birthdate,
+        //     'iban' => $request->iban,
+        // );
+        // $validateFields = array(
+        //     'name' => 'required|alpha',
+        //     'role_id' => 'required|numeric',
+        //     'currency' => [
+        //         'required',
+        //         Rule::in(['EUR', 'RUB', 'USD'])
+        //     ],
+        //     'login' => 'alpha_num|unique:users|nullable',
+        //     'verified' => 'Boolean',
+        //     'gender' => 'Boolean',
+        //     'birthdate' => 'Date|nullable',
+        //     'iban' => 'string|nullable',
+        // );
+        // if ($user->email !== $request->email) {
+        //     $updatedFields['email'] = $request->email;
+        //     $validateFields['email'] = 'required|email|unique:users';
+        // }
+
+        // if (isset($request->password) && $user->password !== bcrypt($request->password)) {
+        //     $updatedFields['email'] = $request->password;
+        //     $validateFields['password'] = 'required|min:5';
+        // }
+
+
+        // $request->validate($validateFields);
+
+        // User::whereId($id)->update($updatedFields);
+        // return redirect()->route('users.index')->with('successMessage', 'User has been successfully updated');
     }
 
     /**

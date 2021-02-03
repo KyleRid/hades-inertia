@@ -106,6 +106,9 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('/posts', [PostsController::class, 'index'])->name('posts.index');
     Route::get('/posts/{post}', [PostsController::class, 'show'])->name('posts.show');
+    Route::get('/posts/{post}/edit', [PostsController::class, 'edit'])
+    ->name('posts.edit');
+    Route::patch('/posts/{post}', [PostsController::class, 'update'])->name('posts.update');
 });
 
 

@@ -32,10 +32,13 @@
 
 <script>
     import Layout from '@/Shared/Layout';
+    import { VueEditor } from 'vue2-editor';
+
     export default {
         props: ['post'],
         components: {
             Layout,
+            VueEditor,
         },
         data() {
             console.log('post', this.post);
@@ -47,6 +50,11 @@
 
         },
         methods: {
+        },
+         data() {
+            return {
+                content: 'test'
+            }
         }
     }
 </script>
