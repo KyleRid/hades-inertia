@@ -1,15 +1,12 @@
 <template>
     <main>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a href="#" class="navbar-brand">Navbar</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigaton">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark container-fluid">
+            <a href="#" class="navbar-brand">Hades</a>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav" style="color: white !important;">
-                    <inertia-link href="/">Home</inertia-link>
-                    <inertia-link href="/about">About</inertia-link>
-                    <inertia-link href="/contact">Contact</inertia-link>
+                    <span>User name: {{this.userName}}</span>
+                    <span>Balance: {{this.balance}}</span>
+                    <span>Time: {{this.time}}</span>
                 </div>
             </div>
         </nav>
@@ -21,12 +18,42 @@
         </div>
     </main>
 </template>
+
+<style lang="scss">
+    .navbar-collapse {
+        width: auto;
+        margin-left: auto;
+    }
+
+    .navbar-nav {
+
+        span {
+            margin-right: 15px;
+        }
+    }
+</style>
+
 <script>
 import Sidebar from '@/Shared/Sidebar';
+import { DateTime } from 'luxon';
 export default {
+    props: ['user'],
     components: {
         Sidebar,
     },
+    data() {
+        // const date = new Date();
+        console.log('props', this.$page);
+        setInterval(() => {
+            // console.log('this.time', this.time, date.getSeconds());
+            this.time = DateTime.local().toLocaleString(DateTime.TIME_24_WITH_SECONDS);
+        }, 1000);
+        return {
+            userName: this.$page.props.user.name,
+            balance: this.$page.props.user.balance || 0,
+            time: DateTime.local().toLocaleString(DateTime.TIME_24_WITH_SECONDS),
+        }
+    }
     // inject: ['page']
 }
 </script>

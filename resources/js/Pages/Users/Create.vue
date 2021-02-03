@@ -18,10 +18,10 @@
                     </div>
                     <div class="form-group">
                         <label for="currency">Currency</label>
-                        <select name="currency" id="currency" v-model="currency">
-                            <option name="role" value="EUR">EUR</option>
-                            <option name="role" value="USD">USD</option>
-                            <option name="role" value="RUB">RUB</option>
+                        <select name="currencies" id="currencies" v-model="currency">
+                            <option name="currency" value="EUR">EUR</option>
+                            <option name="currency" value="USD">USD</option>
+                            <option name="currency" value="RUB">RUB</option>
                         </select>
                     </div>
                     <div class="form-group">

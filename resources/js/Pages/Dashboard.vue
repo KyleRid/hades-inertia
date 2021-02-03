@@ -6,9 +6,10 @@
                     <div class="col-sm">
                         <div class="general-statistics">
                             <div class="general-statistics__header">
-                                <h3>Essentials</h3>
-                                <select>
-                                    <option>This Month</option>
+                                <h3>Current Period</h3>
+                                  <select name="periods" id="period" v-model="period" @change="changePeriod()">
+                                    <option name="period" value="month">This Month</option>
+                                    <option name="period" value="year">This Year</option>
                                 </select>
                             </div>
                             <div class="general-statistics__body">
@@ -73,6 +74,9 @@
         justify-content: space-between;
         align-items: center;
         margin-bottom: 15px;
+        border-radius: 10px;
+        border: 1px solid #eaeaea;
+        padding: 15px;
     }
 
     &__body {
@@ -97,6 +101,11 @@
     .block-number {
         font-size: 45px;
     }
+
+    h3 {
+        font-weight: bold;
+        text-transform: uppercase;
+    }
 }
 </style>
 
@@ -116,63 +125,7 @@
         },
         mounted() {
 
-            (async () => {
-                this.chartPayments = await this.getChartPayments();
-                this.chartRegistration = await this.getChartRegistration();
-                this.chartMoneySpent = await this.getChartMoneySpent();
-                const chartPayments = new Chart(document.getElementById('chart-payments') , {
-                    type: 'line',
-                    responsive: true,
-                    data: {
-                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
-                        datasets: [
-                        {
-                            label: '2018 Sales',
-                            data: await this.getChartPayments(),
-                            backgroundColor: '#00ff6645',
-                        }
-                        ]
-                    }
-                });
-
-                const chartRegistration = new Chart(document.getElementById('chart-registrations') , {
-                    type: 'line',
-                    responsive: true,
-                    data: {
-                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
-                        datasets: [
-                        {
-                            label: '2018 Sales',
-                            data: await this.getChartRegistration(),
-                            backgroundColor: '#00ff6645',
-                        }
-                        ]
-                    }
-                });
-
-                console.log(this.chartMoneySpent);
-                const chartMoneySpent = new Chart(document.getElementById('chart-money-spent') , {
-                    type: 'line',
-                    responsive: true,
-                    data: {
-                        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
-                        datasets: [
-                        {
-                            label: '2018 Sales',
-                            data: await this.getChartMoneySpent(),
-                            backgroundColor: '#00ff6645',
-                        }
-                        ]
-                    }
-                });
-
-                this.totalPlayers = await this.getTotalPlayers();
-                this.deposits = await this.getDeposits();
-                this.registrations = await this.getRegistrations();
-                this.netRevenue = await this.getNetRevenue();
-                this.playersOnline = await this.getPlayersOnline();
-                this.loading = false;
-            })();
+            this.init();
 
         },
         data() {
@@ -187,39 +140,134 @@
                 netRevenue: 0,
                 playersOnline: 0,
                 loading: true,
+                period: 'month',
             };
         },
         methods: {
+                init(period = 'month') {
+                    (async () => {
+                        this.chartPayments = await this.getChartPayments(period);
+                        this.chartRegistration = await this.getChartRegistration(period);
+                        this.chartMoneySpent = await this.getChartMoneySpent(period);
+                        const chartPayments = new Chart(document.getElementById('chart-payments') , {
+                            type: 'line',
+                            responsive: true,
+                            data: {
+                                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                                datasets: [
+                                {
+                                    label: '2018 Sales',
+                                    data: await this.getChartPayments(period),
+                                    backgroundColor: '#00ff6645',
+                                }
+                                ]
+                            }
+                        });
+
+                        const chartRegistration = new Chart(document.getElementById('chart-registrations') , {
+                            type: 'line',
+                            responsive: true,
+                            data: {
+                                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                                datasets: [
+                                {
+                                    label: '2018 Sales',
+                                    data: await this.getChartRegistration(period),
+                                    backgroundColor: '#00ff6645',
+                                }
+                                ]
+                            }
+                        });
+
+                        console.log(this.chartMoneySpent);
+                        const chartMoneySpent = new Chart(document.getElementById('chart-money-spent') , {
+                            type: 'line',
+                            responsive: true,
+                            data: {
+                                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+                                datasets: [
+                                {
+                                    label: '2018 Sales',
+                                    data: await this.getChartMoneySpent(period),
+                                    backgroundColor: '#00ff6645',
+                                }
+                                ]
+                            }
+                        });
+
+                        this.totalPlayers = await this.getTotalPlayers(period);
+                        this.deposits = await this.getDeposits(period);
+                        this.registrations = await this.getRegistrations(period);
+                        this.netRevenue = await this.getNetRevenue(period);
+                        this.playersOnline = await this.getPlayersOnline(period);
+                        this.loading = false;
+                    })();
+                },
+                changePeriod() {
+                   this.init(this.period);
+                },
                 async getChartPayments(period) {
-                    return [300, 700, 450, 750, 450];
+                    if (period === 'month') {
+                        return [300, 700, 450, 750, 450];
+                    } else {
+                        return [30, 70, 45, 75, 45];
+                    }
                 },
 
                 async getChartRegistration(period) {
-                    return [300, 700, 450, 750, 450];
+                     if (period === 'month') {
+                        return [300, 700, 450, 750, 450];
+                    } else {
+                        return [30, 70, 45, 75, 45];
+                    }
                 },
 
                 async getChartMoneySpent(period) {
-                    return [300, 700, 450, 750, 450];
+                     if (period === 'month') {
+                        return [300, 700, 450, 750, 450];
+                    } else {
+                        return [30, 70, 45, 75, 45];
+                    }
                 },
 
                 async getTotalPlayers(period) {
-                    return 12321;
+                    if (period === 'month') {
+                        return 12321;
+                    } else {
+                        return 123;
+                    }
                 },
 
                 async getDeposits(period) {
-                    return 321321321321;
+                     if (period === 'month') {
+                        return 321321321321;
+                    } else {
+                        return 32132132;
+                    }
                 },
 
                 async getRegistrations(period) {
-                    return 23123;
+                    if (period === 'month') {
+                        return 23123;
+                    } else {
+                        return 233;
+                    }
                 },
 
                 async getNetRevenue(period) {
-                    return 2321321321;
+                    if (period === 'month') {
+                        return 2321321321;
+                    } else {
+                        return 23213;
+                    }
                 },
 
                 async getPlayersOnline(period) {
-                    return 321321321;
+                     if (period === 'month') {
+                        return 321321321;
+                    } else {
+                        return 3213;
+                    }
                 }
             }
     }
