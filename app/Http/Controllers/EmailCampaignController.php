@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use App\Models\EmailCampaign;
 
 class EmailCampaignController extends Controller
 {
@@ -14,8 +15,9 @@ class EmailCampaignController extends Controller
      */
     public function index()
     {
+        $campaign = EmailCampaign::all();
         return Inertia::render('EmailCampaign/Index', [
-            // 'users' => $users,
+            'campaign' => $campaign,
         ]);
     }
 
