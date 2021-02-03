@@ -8,6 +8,7 @@ use App\Http\Controllers\RolesController;
 use App\Http\Controllers\ConfigurationController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmailCampaignController;
+use App\Http\Controllers\PostsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -100,6 +101,11 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
     Route::get('/emailCampaign', [EmailCampaignController::class, 'index'])->name('emailCampaign.index');
 
     Route::patch('/emailCampaign', [EmailCampaignController::class, 'update']);
+});
+
+Route::group(['middleware' => ['auth:sanctum', 'verified']], function() {
+    Route::get('/posts', [PostsController::class, 'index'])->name('posts.index');
+    Route::get('/posts/{post}', [PostsController::class, 'show'])->name('posts.show');
 });
 
 

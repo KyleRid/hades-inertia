@@ -5,11 +5,11 @@
                 <li class="nav-item" v-bind:class="{'active': this.currentRoute === 'dashboard'}">
                     <inertia-link :href="route('dashboard')">Dashboard</inertia-link>
                 </li>
-                <li class="nav-item" v-bind:class="{'active': this.currentRoute === 'users.index'}">
+                <li class="nav-item" v-bind:class="{'active': this.currentRoute.includes('users.')}">
                     <inertia-link :href="route('users.index')">Users</inertia-link>
                 </li>
-                <li class="nav-item" v-bind:class="{'active': this.currentRoute === 'roles.index'}">
-                    <inertia-link :href="route('roles.index')">Posts</inertia-link>
+                <li class="nav-item" v-bind:class="{'active': this.currentRoute === 'posts.index'}">
+                    <inertia-link :href="route('posts.index')">Posts</inertia-link>
                 </li>
                 <li class="nav-item" v-bind:class="{'active': this.currentRoute === 'roles.index'}">
                     <inertia-link :href="route('roles.index')">Roles</inertia-link>
