@@ -1,9 +1,11 @@
 <template>
     <layout>
         <div class="container">
+            <h2>User Card</h2>
             <div class="col-md-6">
                 <div v-for="field in this.fields">
-                    {{field.title}}: {{field.value || '-'}}
+                    <b>{{field.title}}:</b> {{field.value || '-'}}
+                    <hr>
                 </div>
                 <!-- <div>Access: {{  }}</div>
                 <div>Currency: {{  }}</div>
@@ -29,6 +31,18 @@
         </div>
     </layout>
 </template>
+
+<style lang="scss">
+    h2 {
+        margin-bottom: 15px;
+        font-weight: bold;
+        font-size: 24px;
+    }
+
+    div {
+        padding: 3px 0;
+    }
+</style>
 
 <script>
     import Layout from '@/Shared/Layout';

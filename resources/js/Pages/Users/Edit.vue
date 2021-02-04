@@ -1,11 +1,12 @@
 <template>
     <layout>
         <div class="container">
+            <h2>Edit User</h2>
             <div class="col-md-6">
                 <div v-if="Object.keys(errors).length > 0" class="alert alert-danger mt-4">
                     {{errors[Object.keys(errors)[0][0]]}}
                 </div>
-                  <form class="my-5" @submit.prevent="updateUser()">
+                  <form @submit.prevent="updateUser()">
                     <div class="form-group">
                         <label for="name">Role</label>
                         <select name="roles" id="roles" v-model="form.role_id">
@@ -54,20 +55,20 @@
                     </div>
                     <div class="form-group">
                         <label for="name">IBAN (optional)</label>
-                        <input type="text" class="form-control" id="iban" v-model="form.iban">
+                        <input type="text" class="form-control" id="iban" v-model="form.iban" placeholder="IBAN (optional)">
                     </div>
 
                      <div class="form-group">
                         <label for="name">Bank Name (optional)</label>
-                        <input type="text" class="form-control" id="bankName" v-model="form.bankName">
+                        <input type="text" class="form-control" id="bankName" v-model="form.bankName" placeholder="Bank name (optional)">
                     </div>
                     <div class="form-group">
                         <label for="name">Passport (optional)</label>
-                        <input type="text" class="form-control" id="passport" v-model="form.passport">
+                        <input type="text" class="form-control" id="passport" v-model="form.passport" placeholder="Passport (optional)">
                     </div>
                     <div class="form-group">
                         <label for="name">Phone (optional)</label>
-                        <input type="text" class="form-control" id="phone" v-model="form.phone">
+                        <input type="text" class="form-control" id="phone" v-model="form.phone" placeholder="Phone (optional)">
                     </div>
                     <button type="submit" class="btn btn-primary">Update User</button>
                 </form>
@@ -75,6 +76,30 @@
         </div>
     </layout>
 </template>
+
+<style lang="scss">
+
+    form {
+        margin-bottom: 20px;
+    }
+    h2 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+
+        .currencies {
+            margin-left: 10px;
+        }
+
+        #roles {
+            margin-left: 32px;
+        }
+    }
+</style>
 
 <script>
     import Layout from '@/Shared/Layout';

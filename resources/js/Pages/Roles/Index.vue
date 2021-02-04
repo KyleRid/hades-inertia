@@ -1,35 +1,36 @@
 <template>
     <layout>
         <div class="container">
+            <h2>Roles</h2>
             <div v-if="successMessage" class="alert alert-success mt-4">
                 {{successMessage}}
-            </div>
-            <div class="my-5">
-                <a href="/users/create" class="btn btn-primary">Create User</a>
             </div>
             <table class="table table-stripped">
                 <thead>
                     <tr>
                         <th scope="col">Name</th>
-                        <th scope="col">Email</th>
+                        <th scope="col">Description</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="user in users" :key="user.id">
-                        <td>{{user.name}}</td>
-                        <td>{{user.email}}</td>
+                    <tr v-for="role in roles" :key="role.id">
+                        <td>{{role.name}}</td>
+                        <td>{{role.description}}</td>
                         <td>
-                            <inertia-link class="btn btn-edit" :href="`/users/${user.id}/edit`">Edit</inertia-link>
-                            <!-- <form @submit.prevent="submit">
-                                <input type="hidden" >
-                                <button type="submit" onclick="return confirm('Are you sure?');"
-                                        class="btn btn-primary btn-xs" >
-                                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                                </button> -->
-                                <!-- {{ csrf_field() }} -->
-                                <a href="#" class="btn btn-delete" @click="deleteUser(user.id);">Delete</a>
-                            <!-- </form> -->
+                            <!-- <a href="#" class="btn btn-primary" @click="saveChanged(role.id);">Save</a> -->
+                            <a href="#" class="btn btn-delete" @click="deleteRole(role.id);">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" placeholder="Name" style="border: none; border-bottom: 1px solid black;">
+                        </td>
+                        <td>
+                            <input type="text" placeholder="Description" style="border: none; border-bottom: 1px solid black;">
+                        </td>
+                        <td>
+                            <a href="/users/create" class="btn btn-primary">Add role</a>
                         </td>
                     </tr>
                 </tbody>
@@ -39,6 +40,11 @@
 </template>
 
 <style lang="scss">
+    h2 {
+        font-weight: bold;
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
     .btn {
         padding: 5px 10px;
         border-radius: 10px;
@@ -58,9 +64,12 @@
 <script>
     import Layout from '@/Shared/Layout';
     export default {
-        props: ['users', 'successMessage'],
+        props: ['roles', 'successMessage'],
         components: {
             Layout
+        },
+        mounted() {
+            console.log('roles', this.roles);
         },
         methods: {
             async deleteUser(id) {

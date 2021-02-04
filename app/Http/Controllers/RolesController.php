@@ -17,7 +17,8 @@ class RolesController extends Controller
     public function index()
     {
          //
-         $roles = RoleResource::collection(Role::latest()->paginate(5));
+        //  $roles = RoleResource::collection(Role::latest()->paginate(5));
+        $roles = Role::all();
          return Inertia::render('Roles/Index', [
              'roles' => $roles,
          ]);

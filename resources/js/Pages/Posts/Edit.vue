@@ -1,12 +1,13 @@
 <template>
     <layout>
         <div class="container">
+            <h2>Edit Post</h2>
             <form action="" class="row" @submit.prevent="savePost">
                 <div class="col-md-6">
                     <input type="text" v-model="title" class="post-title" placeholder="Title">
                     <vue-editor v-model="content" />
-                    <span>Updated At: {{ this.updatedAt }}</span>
-                    <span>Created At: {{ this.createdAt }}</span>
+                    <span><b>Updated At:</b> {{ this.updatedAt ||  '2017-04-20'}}</span> <br>
+                    <span><b>Created At:</b> {{ this.createdAt || '2017-04-20'}}</span>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
@@ -18,14 +19,22 @@
                         <input id="tags" type="text" v-model="tags" placeholder="tags">
                     </div>
                       <div class="form-group">
-                        <label for="thumbnail">Thumbnail: </label>
-                        <input id="thumbnail" type="file" @change="previewFile">
-                        <div id="preview">
-                            <img v-if="url" :src="url" />
+                        <div>
+                             <div style="margin-bottom: 15px">
+                                <label for="thumbnail">Thumbnail: </label>
+                                <input id="thumbnail" type="file" @change="previewFile">
+                            </div>
+
+                            <div id="preview" >
+                                <!-- <img v-if="url" :src="url" /> -->
+                                <img src="https://images.unsplash.com/photo-1593642634443-44adaa06623a?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=925&q=80" alt="" style="    width: 250px;
+                            height: auto;">
+                            </div>
                         </div>
+
                     </div>
                 </div>
-                <button type="submit">Submit</button>
+                <button class="btn btn-primary" type="submit">Save</button>
             </form>
         </div>
     </layout>
@@ -79,6 +88,11 @@
 </script>
 
 <style lang="scss">
+    h2 {
+        font-weight: bold;
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
     .post-title {
         border: none;
         border-bottom: 1px solid #000;
@@ -88,5 +102,22 @@
             outline: none;
             --tw-ring-offset-shadow: none;
         }
+    }
+
+    .btn {
+        margin-left: 15px;
+        width: auto;
+    }
+
+    .col-md-6 {
+        margin-bottom: 15px;
+    }
+
+    .form-group {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 300px;
+        margin-bottom: 15px;
     }
 </style>

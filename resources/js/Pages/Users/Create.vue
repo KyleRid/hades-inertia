@@ -1,15 +1,16 @@
 <template>
     <layout>
         <div class="container">
+            <h2>Create User</h2>
             <div class="col-md-6">
                 <div v-if="Object.keys(this.errors).length > 0" class="alert alert-danger mt-4">
                     <div v-bind:key="error" v-for="error in this.errors">
                         {{ error }}
                     </div>
                 </div>
-                <form action="/users" method="POST" class="my-5" @submit.prevent="createUser">
+                <form action="/users" method="POST" @submit.prevent="createUser">
                     <div class="form-group">
-                        <label for="name">Role</label>
+                        <label for="name">Role: </label>
                         <select name="roles" id="roles">
                             <option name="role" value="client">Client</option>
                             <option name="role" value="admin">Admin</option>
@@ -17,7 +18,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="currency">Currency</label>
+                        <label for="currency">Currency: </label>
                         <select name="currencies" id="currencies" v-model="form.currency">
                             <option name="currency" value="EUR">EUR</option>
                             <option name="currency" value="USD">USD</option>
@@ -33,7 +34,7 @@
                         <input type="text" class="form-control" id="name" placeholder="Email" v-model="form.email">
                     </div>
                      <div class="form-group">
-                        <label for="login">Login</label>
+                        <label for="login">Login (optional)</label>
                         <input type="text" class="form-control" id="login" placeholder="Login (optional)" v-model="form.login">
                     </div>
                     <div class="form-group">
@@ -56,20 +57,20 @@
                     </div>
                     <div class="form-group">
                         <label for="name">IBAN (optional)</label>
-                        <input type="text" class="form-control" id="iban" v-model="form.iban">
+                        <input type="text" class="form-control" id="iban" v-model="form.iban" placeholder="IBAN (optional)">
                     </div>
 
                      <div class="form-group">
                         <label for="name">Bank Name (optional)</label>
-                        <input type="text" class="form-control" id="bankName" v-model="form.bankName">
+                        <input type="text" class="form-control" id="bankName" v-model="form.bankName" placeholder="Bank name (optional)">
                     </div>
                     <div class="form-group">
                         <label for="name">Passport (optional)</label>
-                        <input type="text" class="form-control" id="passport" v-model="form.passport">
+                        <input type="text" class="form-control" id="passport" v-model="form.passport" placeholder="Passport (optional)">
                     </div>
                     <div class="form-group">
                         <label for="name">Phone (optional)</label>
-                        <input type="text" class="form-control" id="phone" v-model="form.phone">
+                        <input type="text" class="form-control" id="phone" v-model="form.phone" placeholder="Phone (optional)">
                     </div>
                     <button type="submit" class="btn btn-primary">Create User</button>
                 </form>
@@ -77,6 +78,30 @@
         </div>
     </layout>
 </template>
+
+<style lang="scss">
+
+    form {
+        margin-bottom: 20px;
+    }
+    h2 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+
+        .currencies {
+            margin-left: 10px;
+        }
+
+        #roles {
+            margin-left: 32px;
+        }
+    }
+</style>
 
 <script>
     import Layout from '@/Shared/Layout';

@@ -8,16 +8,16 @@
                 <li class="nav-item" v-bind:class="{'active': this.currentRoute.includes('users.')}">
                     <inertia-link :href="route('users.index')">Users</inertia-link>
                 </li>
-                <li class="nav-item" v-bind:class="{'active': this.currentRoute === 'posts.index'}">
+                <li class="nav-item" v-bind:class="{'active': this.currentRoute.includes('posts.')}">
                     <inertia-link :href="route('posts.index')">Posts</inertia-link>
                 </li>
                 <li class="nav-item" v-bind:class="{'active': this.currentRoute === 'roles.index'}">
                     <inertia-link :href="route('roles.index')">Roles</inertia-link>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" v-bind:class="{'active': this.currentRoute === 'configuration.index'}">
                     <inertia-link :href="route('configuration.index')">Configuration</inertia-link>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" v-bind:class="{'active': this.currentRoute === 'emailCampaign.index'}">
                     <inertia-link :href="route('emailCampaign.index')">Email Campaign</inertia-link>
                 </li>
             </ul>
@@ -45,7 +45,8 @@
         }
 
         &.active {
-            background-color: #35ca5959;
+            // background-color: #35ca5959;
+            background-color: #35ca408a;
         }
     }
 </style>
