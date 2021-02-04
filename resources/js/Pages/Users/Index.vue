@@ -4,7 +4,7 @@
             <div v-if="successMessages" class="alert alert-success mt-4" id="successMessages">
                 {{this.successMessages}}
             </div>
-            <div class="my-5">
+            <div class="buttons">
                 <a href="/users/create" class="btn btn-primary">Create User</a>
             </div>
             <table class="table table-stripped">
@@ -12,6 +12,7 @@
                     <tr>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Login</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -19,6 +20,7 @@
                     <tr v-for="user in users" :key="user.id">
                         <td>{{user.name}}</td>
                         <td>{{user.email}}</td>
+                        <td>{{user.login || '-'}}</td>
                         <td>
                             <inertia-link class="btn btn-edit" :href="$route('users.info', user.id)">Info</inertia-link>
                             <inertia-link class="btn btn-edit" :href="$route('users.edit', user.id)">Edit</inertia-link>
@@ -32,6 +34,11 @@
 </template>
 
 <style lang="scss">
+    .buttons {
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+
     .btn {
         padding: 5px 10px;
         border-radius: 10px;

@@ -27,6 +27,11 @@
 </template>
 
 <style lang="scss">
+    .sidebar {
+        overflow: hidden;
+        width: 250px;
+    }
+
     .nav-item {
 
         a {
